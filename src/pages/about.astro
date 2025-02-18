@@ -1,8 +1,6 @@
 ---
 import '../styles/global.css';
-
-import Footer from '../components/footer.astro';
-import Header from '../components/header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = "About Me";
 
 const identity = {
@@ -22,31 +20,15 @@ const skillColor = "navy";
 const fontWeight = "bold";
 const textCase = "uppercase";
 ---
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-    <style define:vars={{ skillColor, fontWeight, textCase }}>
-      h1 {
-        color: purple;
-        font-size: 4rem;
-      }
-      .skill {
-        color: var(--skillColor);
-        font-weight: var(--fontWeight);
-        text-transform: var(--textCase);
-      }
-    </style>
-  </head>
-  <body>
-
-    <Header />
-    <h1>{pageTitle}</h1>
-    <h2>... and my new Astro site!</h2>
+<BaseLayout pageTitle={pageTitle}>
+  <style define:vars={{ skillColor, fontWeight, textCase }}>
+    .skill {
+      color: var(--skillColor);
+      font-weight: var(--fontWeight);
+      text-transform: var(--textCase);
+    }
+  </style>
+  <h2>... and my new Astro site!</h2>
 
     <p>
       I am working through Astro's introductory tutorial. This is the second
@@ -88,11 +70,4 @@ const textCase = "uppercase";
         <p>My goal is not 3 days.</p>
       )
     }
-    <Footer />
-    <script>
-    document.querySelector('.hamburger')?.addEventListener('click', () => {
-    document.querySelector('.nav-links')?.classList.toggle('expanded');
-    });
-    </script>
-  </body>
-</html>
+</BaseLayout>
